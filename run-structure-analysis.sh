@@ -1,33 +1,50 @@
 #!/usr/bin/env bash
 
 # Author: Alexander Koc <alexander.koc@slu.se>
-# Version: 0.2 <2018-03-13>
-# Description: The following script executes the structure software in parallel,
-# and saves the output data and stdout data to separate files per run.
+# Version: 0.3 <2020-01-07>
+# Description: Wrapper around structure allowing for parallel runs of multiple values of MAXPOP/K and replicates
 
-# Executable and input/output paths:
+# Usage:
+# $ bash run-structure-analysis.sh path/to/mainparams path/to/extraparams path/to/input_data path/to/output_directory
 
-main_params="$1"
-extra_params="$2"
-input_data="$3"
-output_folder="$4"
-# basename="$5"
+# structure=/usr/local/Structure/Structure-2.3.4/bin/structure
+# projectroot=/data/home/alexander.koc/Projects/ThereseStructure
 
-# Number of runs per K value:
+# Script parameters:
+mainparams="$1"
+extraparams="$2"
+inputdata="$3"
+outputfolder="$4"
+
+
+# TODO: Allow setting of these from cmd line
+# Number of parallel processes to run:
+n_threads=18
+
+# MAXPOP/K interval to try
+k_min=1
+k_max=10
+
+# Number of replicate runs per K:
 n_reps=10
 
-# Number of parallel processes to run:
-n_threads=10
-
-echo "[START] Hello."
-echo "[INFO] Input data: ${input_data}"
-echo "[INFO] Main parameter file: ${main_params}"
-echo "[INFO] Extra parameter file: ${extra_params}"
-echo "[INFO] Output saved in: ${output_folder}"
+# Script start
+echo "[START] Hello there."
+echo "[INFO] Script running with following parameterss:"
+echo "[INFO] Input data: ${inputdata}"
+echo "[INFO] Main parameter file: ${mainparams}"
+echo "[INFO] Weird extra params file: ${extraparams}"
+echo "[INFO] Output set to be saved in: ${outputfolder}"
 echo "[INFO] Using ${n_threads} threads."
-echo "[INFO] Alright. Starting the structure run in parallel. Buckle up." 
+echo "[INFO] Using Testing MAXPOP/K from K = ${k_min}-${k_max}"
+echo "[INFO] $n_reps reps per K"
+echo "[INFO] Buckle up. Starting the structure run in parallel." 
 
-parallel --progress -j ${n_threads} structure -m ${main_params} -e ${extra_params} -i ${input_data} -o ${output_folder}/k{1}_run_{2} -K {1} '>' ${output_folder}/k{1}_run_{2}.output.txt ::: {1..10} ::: {01..10}
+# Execute structure in parallel over $n_threads. 
+echo "[INFO] Executing following command:"
+echo "[INFO] parallel --progress -j ${n_threads} structure -m ${mainparams} -e ${extraparams} -i ${inputdata} -o ${outputfolder}/k{1}_run_{2} -K {1} '>' ${outputfolder}/k{1}_run_{2}.output.txt ::: {$k_min..$k_max} ::: {01..$n_reps}"
 
-echo "[INFO] Done!"
+parallel --progress -j ${n_threads} structure -m ${mainparams} -e ${extraparams} -i ${inputdata} -o ${outputfolder}/k{1}_run_{2} -K {1} '>' ${outputfolder}/k{1}_run_{2}.output.txt ::: {$k_min..$k_max} ::: {01..$n_reps}
+
+echo "[INFO] All structure runs completed. (... Alternatively, all structure runs exited with errors)."
 echo "[EXIT] Bye."
