@@ -1,21 +1,17 @@
 #!/usr/bin/env bash
 
 # Author: Alexander Koc <alexander.koc@slu.se>
-# Version: 0.3 <2020-01-07>
+# Version: 0.4 <2020-11-04>
 # Description: Wrapper around structure allowing for parallel runs of multiple values of MAXPOP/K and replicates
 
 # Usage:
 # $ bash run-structure-analysis.sh path/to/mainparams path/to/extraparams path/to/input_data path/to/output_directory
-
-# structure=/usr/local/Structure/Structure-2.3.4/bin/structure
-# projectroot=/data/home/alexander.koc/Projects/ThereseStructure
 
 # Script parameters:
 mainparams="$1"
 extraparams="$2"
 inputdata="$3"
 outputfolder="$4"
-
 
 # TODO: Allow setting of these from cmd line
 # Number of parallel processes to run:
