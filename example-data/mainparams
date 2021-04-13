@@ -1,0 +1,10 @@
+#define LABEL 1
+#define POPDATA 1
+#define POPFLAG 1
+#define NUMLOCI 5
+#define PLOIDY 2
+#define MISSING -999
+#define ONEROWPERIND 0
+#define NUMINDS 200
+#define PHENOTYPE 0
+#define EXTRACOLS 0
