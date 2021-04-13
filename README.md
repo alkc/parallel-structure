@@ -20,6 +20,8 @@ bash parallel-structure.sh example-data/mainparams example-data/extraparams exam
 
 The command starts 8 parallel jobs for K=1 to K=3 with 5 replicates for each tested value K.
 
+All  output is saved to `output_dir/`
+
 
 ## CHANGELOG
 
