@@ -18,10 +18,11 @@ Please run the following command from the script directory:
 bash parallel-structure.sh example-data/mainparams example-data/extraparams example-data/testdata1 output_dir 1 3 5 8
 ```
 
+In the last four digits of the above command you are able to set, in the following order: minimum K, maximum K, number of repetitions and number of parallel jobs. 
+
 The command starts 8 parallel jobs for K=1 to K=3 with 5 replicates for each tested value K.
 
 All  output is saved to `output_dir/`
-
 
 ## CHANGELOG
 
