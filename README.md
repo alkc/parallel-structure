@@ -24,6 +24,13 @@ The command starts 8 parallel jobs for K=1 to K=3 with 5 replicates for each tes
 
 All  output is saved to `output_dir/`
 
+## Citation
+
+[![DOI](https://zenodo.org/badge/125206866.svg)](https://zenodo.org/badge/latestdoi/125206866)
+
+* Add parallel citation here
+* Add Structure citation here
+
 ## CHANGELOG
 
 ## version 0.6.1
