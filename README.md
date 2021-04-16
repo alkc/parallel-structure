@@ -10,7 +10,7 @@ conda install -c bioconda parallel structure
 
 ## Example
 
-To check if the script works, please use the included example data set (borrowed from the structure website)
+To check if the script works, please use the included example data set. More info about the sample data can be found at: https://web.stanford.edu/group/pritchardlab/software/structure-data_v.2.3.1.html (testdata1)
 
 Please run the following command from the script directory:
 
