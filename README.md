@@ -26,7 +26,12 @@ All  output is saved to `output_dir/`
 
 ## CHANGELOG
 
-## New in version 0.6 <2021-04-13>
+## version 0.6.1
+
+* Prepare for release on Zenodo
+* UPDATED README with better description
+
+##  version 0.6 <2021-04-13>
 
 * FIXED bug where replicate runs started with the same seed, which defeated the purpose of reps.
 * ADDED Ability to set min K, max K, number of reps and number of parallel jobs from the command line
