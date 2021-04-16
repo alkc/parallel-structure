@@ -34,7 +34,7 @@ If this script has been useful to you and you think more researchers would benef
 
 More importantly, you should probably cite both structure and parallel on which this script relies.
 
-For more info about how to run structure, please refer to page 37 of the official [Structure 3.4 manual (PDF)](https://web.stanford.edu/group/pritchardlab/structure_software/release_versions/v2.3.4/structure_doc.pdf)
+For more info about how to cite Structure please refer to page 37 of the official [Structure 3.4 manual (PDF)](https://web.stanford.edu/group/pritchardlab/structure_software/release_versions/v2.3.4/structure_doc.pdf)
 
 For more info about how to cite GNU parallel, please look here https://doi.org/10.5281/zenodo.1146014 (or run `parallel --citation` in the bash prompt!).
 
