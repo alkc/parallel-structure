@@ -28,7 +28,7 @@ All  output is saved to `output_dir/`
 
 [![DOI](https://zenodo.org/badge/125206866.svg)](https://zenodo.org/badge/latestdoi/125206866)
 
-If this script has been useful to you and you think more researchers would benefit from using it, then feel free to cite it: Alexander Koc. (2021, April 16). alkc/parallel-structure: (Version v0.6.1). Zenodo. http://doi.org/10.5281/zenodo.4697229
+If this script has been useful to you and you think more researchers would benefit from knowing about it, then feel free to cite it: Alexander Koc. (2021, April 16). alkc/parallel-structure: (Version v0.6.1). Zenodo. http://doi.org/10.5281/zenodo.4697229
 
 More importantly, you should probably cite both structure and parallel on which this script relies.
 
