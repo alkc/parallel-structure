@@ -50,3 +50,11 @@ For more info about how to cite GNU parallel, please look here https://doi.org/1
 * FIXED bug where replicate runs started with the same seed, which defeated the purpose of reps.
 * ADDED Ability to set min K, max K, number of reps and number of parallel jobs from the command line
 * ADDED More informative error messages if files missing at specified paths  
+
+## TODO:
+
+* Add installation instructions?
+* Add long named parameters (probably requires moving away from using bash?)
+* Add some parameter validation (e.g. exit with informative error if input files do not exist)
+* Make nbr parallel jobs parameter optional (default to nproc - 1?)
+ 
