@@ -25,6 +25,22 @@ then
     exit 0
 fi
 
+# Check if parallel/structure are installed
+
+# Big thanks to: https://stackoverflow.com/a/677212 !
+if ! command -v structure &> /dev/null
+then
+    echo "structure could not be found. Make sure STRUCTURE 3.4 is installed and accessible in the bash environment prior to running this script!"
+    exit 1
+fi
+
+if ! command -v parallel &> /dev/null
+then
+    echo "parallel could not be found. Make sure the latest version GNU parallel is installed on this system before running this script!"
+    exit 1
+fi
+
+# Process script inputs:
 
 mainparams="$1"
 extraparams="$2"
