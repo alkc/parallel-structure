@@ -46,15 +46,15 @@ mainparams="$1"
 extraparams="$2"
 inputdata="$3"
 outputfolder="$4"
-k_min=$5
-k_max=$6
-n_reps=$7
+k_min="$5"
+k_max="$6"
+n_reps="$7"
 # Script parameters:
 n_parallel_jobs="$8"
 
 
-k_series=$(seq $k_min 1 $k_max)
-rep_series=$(seq 1 1 $n_reps)
+k_series=$(seq "$k_min" 1 "$k_max")
+rep_series=$(seq 1 1 "$n_reps")
 
 # Process settings:
 function file_exists {
@@ -82,18 +82,18 @@ function run_structure {
 
     extraparams_tmp="/tmp/extraparams_K${curr_k}_REP${curr_rep}_${rand_seed}"
 
-    cat ${extraparams} > ${extraparams_tmp}
-    echo -e "" >> ${extraparams_tmp}
-    echo -e "#define SEED $rand_seed" >> ${extraparams_tmp}
+    cat "${extraparams}" > "${extraparams_tmp}"
+    echo -e "" >> "${extraparams_tmp}"
+    echo -e "#define SEED $rand_seed" >> "${extraparams_tmp}"
 
-    sed '/RANDOMIZE/d' -i ${extraparams_tmp}
-    echo -e "#define RANDOMIZE 0" >> ${extraparams_tmp}
+    sed '/RANDOMIZE/d' -i "${extraparams_tmp}"
+    echo -e "#define RANDOMIZE 0" >> "${extraparams_tmp}"
     
     # cat $extraparams_tmp
 
-    structure -m ${mainparams} -e ${extraparams_tmp} -i ${inputdata} -o ${outputfolder}/K${curr_k}_REP${curr_rep} -K ${curr_k} > ${outputfolder}/K${curr_k}_REP${curr_rep}.output.txt
+    structure -m "${mainparams}" -e "${extraparams_tmp}" -i "${inputdata}" -o "${outputfolder}/K${curr_k}_REP${curr_rep}" -K "${curr_k}" > "${outputfolder}/K${curr_k}_REP${curr_rep}.output.txt"
 
-    rm ${extraparams_tmp}
+    rm "${extraparams_tmp}"
     
 }
 
@@ -104,20 +104,20 @@ echo "[START] Hello there."
 echo "[INFO] Script running with following parameters:"
 echo "[INFO] Input data: ${inputdata}"
 
-file_exists $inputdata
+file_exists "$inputdata"
 
 echo "[INFO] Main parameter file: ${mainparams}"
 
-file_exists $mainparams
+file_exists "$mainparams"
 
 echo "[INFO] Extra params file: ${extraparams}"
 
-file_exists $extraparams
+file_exists "$extraparams"
 
 echo "[INFO] BTW. This file will be modified to add a random seed for each run. Custom seeds or RANDOMIZE=1 will be overriden."
 echo "[INFO] Output set to be saved in: ${outputfolder}"
 
-[ ! -d "$outputfolder" ] && echo "[INFO] Creating directory: $outputfolder" && mkdir -p $outputfolder
+[ ! -d "$outputfolder" ] && echo "[INFO] Creating directory: $outputfolder" && mkdir -p "$outputfolder"
 
 echo "[INFO] Script will run ${n_parallel_jobs} jobs."
 echo "[INFO] Using Testing MAXPOP/K from K = ${k_min}-${k_max}"
@@ -125,7 +125,7 @@ echo "[INFO] $n_reps reps per K"
 echo "[INFO] Buckle up. Starting the structure run in parallel." 
 
 # Execute structure in parallel over $n_threads. 
-parallel --progress -j ${n_parallel_jobs} run_structure ${mainparams} ${extraparams} ${inputdata} ${outputfolder} {1} {2} ::: "${k_series[@]}" ::: "${rep_series[@]}"
+parallel --progress -j "${n_parallel_jobs}" run_structure "${mainparams}" "${extraparams}" "${inputdata}" "${outputfolder}" "{1}" "{2}" ::: "${k_series[@]}" ::: "${rep_series[@]}"
 
 echo "[INFO] All structure runs completed. (... Alternatively, all structure runs exited with errors)."
 echo "[EXIT] Bye."
